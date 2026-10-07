@@ -319,7 +319,10 @@
             $zone_devices_by_name[zone] = $zoneDevices;
           }
 
-          // Add Devices to Zones
+          // Add Devices to Zones, sorted by name
+          devices.sort((a, b) => {
+            return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' });
+          });
           for (const device of devices) {
             const $device = $templateDevice.content.cloneNode(true);
 
